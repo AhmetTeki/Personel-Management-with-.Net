@@ -14,5 +14,8 @@ namespace PersonelManagement.Domain.Entities
         public string Name { get; set; } = null!;
         public string SurName { get; set; } = null!;
         public int AppRoleId { get; set; } 
+        public AppRole? Role { get; set; }
+        public List<AppTask>? Tasks { get; set; }
+        public List<Notification>? Notifications { get; set; }
     }
 }

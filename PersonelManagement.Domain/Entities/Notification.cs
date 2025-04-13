@@ -12,5 +12,6 @@ namespace PersonelManagement.Domain.Entities
         public string Description { get; set; } = null!;
         public bool State { get; set; } 
         public int AppUserId { get; set; } 
+        public AppUser? AppUser { get; set; } 
     }
 }
