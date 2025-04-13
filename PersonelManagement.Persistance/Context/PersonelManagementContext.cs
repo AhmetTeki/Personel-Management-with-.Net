@@ -14,6 +14,10 @@ namespace PersonelManagement.Persistance.Context
         {
             
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
         public DbSet<AppRole> Roles { get; set; }
         public DbSet<AppTask> Tasks { get; set; }
         public DbSet<AppUser> Users { get; set; }
