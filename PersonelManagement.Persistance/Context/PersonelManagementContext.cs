@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PersonelManagement.Domain.Entities;
+using PersonelManagement.Persistance.Configurations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,12 @@ namespace PersonelManagement.Persistance.Context
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfiguration(new AppRoleConfiguration());
+            modelBuilder.ApplyConfiguration(new AppTaskConfiguration());
+            modelBuilder.ApplyConfiguration(new AppUserConfiguration());
+            modelBuilder.ApplyConfiguration(new NotificationConfiguration());
+            modelBuilder.ApplyConfiguration(new PriorityConfiguration());
+            modelBuilder.ApplyConfiguration(new TaskReportConfiguration());
             base.OnModelCreating(modelBuilder);
         }
         public DbSet<AppRole> Roles { get; set; }
