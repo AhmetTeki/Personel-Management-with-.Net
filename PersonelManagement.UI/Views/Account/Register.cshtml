@@ -13,9 +13,17 @@
 
     <div class="card shadow p-4" style="width: 100%; max-width: 500px;">
         <h2 class="text-center mb-4 text-primary">Personel Yönetim Sistemi</h2>
-        <h3 class="text-center mb-4 text-primary">Giriş Yap</h3>
+        <h3 class="text-center mb-4 text-primary">Kayıt Ol</h3>
 
         <form asp-action="Login" method="post">
+            <div class="mb-3">
+                <label for="name" class="form-label">Ad</label>
+                <input type="text" class="form-control" id="name" name="Name" placeholder="Adınızı girin" required />
+            </div>
+            <div class="mb-3">
+                <label for="surname" class="form-label">Soyad</label>
+                <input type="text" class="form-control" id="surname" name="Surname" placeholder="Soyadınızı girin" required />
+            </div>
             <div class="mb-3">
                 <label for="username" class="form-label">Kullanıcı Adı</label>
                 <input type="text" class="form-control" id="username" name="Username" placeholder="Kullanıcı adınızı girin" required />
@@ -26,10 +34,10 @@
                 <input type="password" class="form-control" id="password" name="Password" placeholder="Parolanızı girin" required />
             </div>
 
-            <button type="submit" class="btn btn-primary w-100">Giriş Yap</button>
+            <button type="submit" class="btn btn-primary w-100">Kayıt Ol</button>
             <div class="text-center">
                 <small class="text-muted">
-                    Hesabın yok mu? <a asp-action="Register" asp-controller="Account" class="text-decoration-none">Kayıt ol</a>
+                    Zaten Hesabın Varmı? <a asp-action="Register" asp-controller="Account" class="text-decoration-none">Giriş Yap</a>
                 </small>
             </div>
         </form>
