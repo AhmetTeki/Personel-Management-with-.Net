@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PersonelManagement.Application.Interfaces;
 using PersonelManagement.Persistance.Context;
+using PersonelManagement.Persistance.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +20,7 @@ namespace PersonelManagement.Persistance
             {
                 opt.UseSqlServer(configuration.GetConnectionString("Local"));
             });
+            services.AddScoped<IUserRepository, UserRepository>();
         }
     }
 }
