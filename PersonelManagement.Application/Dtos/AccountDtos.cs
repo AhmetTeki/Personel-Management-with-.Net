@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace PersonelManagement.Application.Dtos
 {
-    public record LoginDto(string UserName, string Password)
-    {
+   
+    public record LoginResponseDto(string Name, string Surname, int roleId);
 
-    }
+    
 }

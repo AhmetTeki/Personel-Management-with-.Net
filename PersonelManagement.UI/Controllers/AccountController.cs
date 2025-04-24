@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using PersonelManagement.Application.Dtos;
+﻿
+using Microsoft.AspNetCore.Mvc;
+
+using PersonelManagement.Application.Requests;
 
 namespace PersonelManagement.UI.Controllers
 {
@@ -10,7 +12,7 @@ namespace PersonelManagement.UI.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Login(LoginDto dto)
+        public IActionResult Login(LoginRequest dto)
         {
             return View();
         }
