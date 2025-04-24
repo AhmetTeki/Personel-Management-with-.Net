@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using PersonelManagement.Application.Dtos;
+using PersonelManagement.Application.Extensions;
 using PersonelManagement.Application.Interfaces;
 using PersonelManagement.Application.Requests;
 using PersonelManagement.Application.Validator;
@@ -33,23 +34,13 @@ namespace PersonelManagement.Application.Handlers
                 }
                 else
                 {
-                    return new Result<LoginResponseDto?>(null, false, null, null);
+                    return new Result<LoginResponseDto?>(null, false, "Kullanıcı Adı veya şifre hatalı", null);
                 }
                 
             }
             else
             {
-                var errorList = new List<ValidationError>();
-                var errors = validationResult.Errors.ToList();
-                foreach (var error in errors)
-                {
-                    errorList.Add(new ValidationError
-                    (
-                        error.PropertyName,
-                        error.ErrorMessage
-                        
-                    ));
-                }
+                var errorList = validationResult.Errors.ToMap();
                 return new Result<LoginResponseDto?>(null, false, null, errorList);
             }
            
