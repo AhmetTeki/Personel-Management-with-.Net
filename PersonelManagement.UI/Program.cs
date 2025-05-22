@@ -1,4 +1,4 @@
-using PersonelManagement.Persistance;
+﻿using PersonelManagement.Persistance;
 using PersonelManagement.Application.Extensions;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
@@ -31,21 +31,13 @@ app.UseRouting();
 
 
 app.MapControllerRoute(name: "default", pattern: "{Controller=Account}/{Action=Login}/{id?}");
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllerRoute(
-      name: "areas",
-      pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
-    );
-});
-
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllerRoute(
-      name: "areas",
-      pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
-    );
-});
-
+app.MapControllerRoute(
+    name: "areas",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+);
+app.MapControllerRoute(
+    name: "areas",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+);
 
 app.Run();
