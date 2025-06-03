@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using PersonelManagement.Application.Dtos;
+using PersonelManagement.Application.Enums;
 using PersonelManagement.Application.Extensions;
 using PersonelManagement.Application.Interfaces;
 using PersonelManagement.Application.Requests;
@@ -28,9 +29,11 @@ namespace PersonelManagement.Application.Handlers
             if (validationResult.IsValid)
             {
               var user=await  this._userRepository.GetByFilter(x=>x.Password==request.Password && x.UserName==request.UserName);
+              
                 if (user != null)
                 {
-                    return new Result<LoginResponseDto?>(new LoginResponseDto(user.Name,user.SurName,user.AppRoleId), true, null, null);
+                    var type = (RoleType)user.AppRoleId;
+                    return new Result<LoginResponseDto?>(new LoginResponseDto(user.Name,user.SurName,type), true, null, null);
                 }
                 else
                 {

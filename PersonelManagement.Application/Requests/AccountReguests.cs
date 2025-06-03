@@ -9,5 +9,5 @@ using System.Threading.Tasks;
 namespace PersonelManagement.Application.Requests
 {
 
-    public record LoginRequest(string UserName, string Password) : IRequest<Result<LoginResponseDto?>>;
+    public record LoginRequest(string UserName, string Password, bool rememberMe=false) : IRequest<Result<LoginResponseDto?>>;
 }
