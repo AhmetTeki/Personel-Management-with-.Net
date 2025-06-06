@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace PersonelManagement.Persistance.Repositories
 {
-   public class UserRepository : IUserRepository
+    public class UserRepository : IUserRepository
     {
         private readonly PersonelManagementContext _context;
 
@@ -20,7 +20,14 @@ namespace PersonelManagement.Persistance.Repositories
             _context = context;
         }
 
-        public async Task<AppUser?> GetByFilter(Expression<Func<AppUser, bool>> filter, bool asNoTracking = true)
+        public async Task<int> CreateUserAsync(AppUser user)
+        {
+            await this._context.AddAsync(user);
+            return await this._context.SaveChangesAsync();
+
+        }
+
+        public async Task<AppUser?> GetByFilterAsync(Expression<Func<AppUser, bool>> filter, bool asNoTracking = true)
         {
 
             if (asNoTracking)

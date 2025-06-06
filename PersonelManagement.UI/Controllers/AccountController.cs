@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using PersonelManagement.Application.Requests;
 using System.Security.Claims;
 using PersonelManagement.Application.Dtos;
+using System.Threading.Tasks;
 
 namespace PersonelManagement.UI.Controllers
 {
@@ -22,15 +23,15 @@ namespace PersonelManagement.UI.Controllers
 
         public IActionResult Login()
         {
-            return View(new LoginRequest("",""));
+            return View(new LoginRequest("", ""));
         }
         [HttpPost]
         public async Task<IActionResult> Login(LoginRequest request)
         {
             var result = await this._mediator.Send(request);
-            if (result.IsSucces && result.Data!=null)
+            if (result.IsSucces && result.Data != null)
             {
-                await SetAuthCookie(result.Data,request.rememberMe);
+                await SetAuthCookie(result.Data, request.rememberMe);
                 return RedirectToAction("Index", "Home", new { area = "Admin" });
             }
             else
@@ -50,13 +51,39 @@ namespace PersonelManagement.UI.Controllers
             }
 
         }
+        [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
-        public IActionResult LogOut()
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterRequest request)
         {
-            return View();
+            var result = await this._mediator.Send(request);
+            if (result.IsSucces)
+            {
+                return RedirectToAction("Login");
+            }
+            else
+            {
+                if (result.Errors != null && result.Errors.Count > 0)
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", result.ErrorMassage ?? "Bilinmeyen bir hata oluştu, sistem üreticinize başvurun.");
+                }
+                return View(request);
+            }
+        }
+        public async Task<IActionResult> LogOut()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Login");
         }
         private async Task SetAuthCookie(LoginResponseDto dto, bool rememberMe)
         {
@@ -76,12 +103,12 @@ namespace PersonelManagement.UI.Controllers
                 //AllowRefresh = <bool>,
                 // Refreshing the authentication session should be allowed.
 
-                        ExpiresUtc = DateTimeOffset.UtcNow.AddDays(30),
+                ExpiresUtc = DateTimeOffset.UtcNow.AddDays(30),
                 //        // The time at which the authentication ticket expires. A 
                 //        // value set here overrides the ExpireTimeSpan option of 
                 //        // CookieAuthenticationOptions set with AddCookie.
 
-                        IsPersistent = rememberMe,
+                IsPersistent = rememberMe,
                 //        // Whether the authentication session is persisted across 
                 //        // multiple requests. When used with cookies, controls
                 //        // whether the cookie's lifetime is absolute (matching the

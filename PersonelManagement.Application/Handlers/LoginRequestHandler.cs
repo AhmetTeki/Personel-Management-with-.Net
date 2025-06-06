@@ -28,7 +28,7 @@ namespace PersonelManagement.Application.Handlers
           var validationResult= await validator.ValidateAsync(request);
             if (validationResult.IsValid)
             {
-              var user=await  this._userRepository.GetByFilter(x=>x.Password==request.Password && x.UserName==request.UserName);
+              var user=await  this._userRepository.GetByFilterAsync(x=>x.Password==request.Password && x.UserName==request.UserName);
               
                 if (user != null)
                 {
