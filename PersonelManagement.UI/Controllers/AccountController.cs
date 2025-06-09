@@ -32,7 +32,7 @@ namespace PersonelManagement.UI.Controllers
             if (result.IsSucces && result.Data != null)
             {
                 await SetAuthCookie(result.Data, request.rememberMe);
-                return RedirectToAction("Index", "Home", new { area = "Admin" });
+                return RedirectToAction("Index", "Home", new { area = result.Data.Role });
             }
             else
             {

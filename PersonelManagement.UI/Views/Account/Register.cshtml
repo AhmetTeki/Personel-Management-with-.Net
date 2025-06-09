@@ -1,4 +1,5 @@
-﻿@{
+﻿@model PersonelManagement.Application.Requests.RegisterRequest
+@{
     Layout = null;
 }
 <!DOCTYPE html>
@@ -15,27 +16,27 @@
         <h2 class="text-center mb-4 text-primary">Personel Yönetim Sistemi</h2>
         <h3 class="text-center mb-4 text-primary">Kayıt Ol</h3>
 
-        <form asp-action="Login" method="post">
+        <form asp-action="Register" method="post">
             <div class="mb-3">
                 <label for="name" class="form-label">Ad</label>
-                <input type="text" class="form-control" id="name" name="Name" placeholder="Adınızı girin" required />
+                <input type="text" class="form-control" asp-for="Name" placeholder="Adınızı girin" required />
             </div>
             <div class="mb-3">
                 <label for="surname" class="form-label">Soyad</label>
-                <input type="text" class="form-control" id="surname" name="Surname" placeholder="Soyadınızı girin" required />
+                <input type="text" class="form-control" asp-for="SurName" placeholder="Soyadınızı girin" required />
             </div>
             <div class="mb-3">
                 <label for="username" class="form-label">Kullanıcı Adı</label>
-                <input type="text" class="form-control" id="username" name="Username" placeholder="Kullanıcı adınızı girin" required />
+                <input type="text" class="form-control" asp-for="UserName" placeholder="Kullanıcı adınızı girin" required />
             </div>
 
             <div class="mb-3">
                 <label for="password" class="form-label">Parola</label>
-                <input type="password" class="form-control" id="password" name="Password" placeholder="Parolanızı girin" required />
+                <input type="password" class="form-control" asp-for="Password" placeholder="Parolanızı girin" required />
             </div>
             <div class="mb-3">
-                <label for="password" class="form-label">Parola Tekrar</label>
-                <input type="password" class="form-control" id="password" name="Password" placeholder="Parolanızı tekrardan girin" required />
+                <label for="ConfirmPassword" class="form-label">Parola Tekrar</label>
+                <input type="password" class="form-control" asp-for="ConfirmPassword" placeholder="Parolanızı tekrardan girin" required />
             </div>
 
             <button type="submit" class="btn btn-primary w-100">Kayıt Ol</button>
@@ -43,6 +44,8 @@
                 <small class="text-muted">
                     Zaten Hesabın Varmı? <a asp-action="Login" asp-controller="Account" class="text-decoration-none">Giriş Yap</a>
                 </small>
+            </div>
+            <div asp-validation-summary=All class="text-danger lead">
             </div>
         </form>
     </div>

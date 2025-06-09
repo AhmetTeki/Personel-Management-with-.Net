@@ -16,6 +16,7 @@ namespace PersonelManagement.Application.Validator
             this.RuleFor(x => x.Password).NotEmpty().WithMessage("Parola boş geçilemez");
             this.RuleFor(x => x.Name).NotEmpty().WithMessage("İsim boş geçilemez");
             this.RuleFor(x => x.SurName).NotEmpty().WithMessage("Soyad boş geçilemez");
+            this.RuleFor(x=>x.Password).Equal(x=>x.ConfirmPassword).WithMessage("Şifreler birbiri ile uyuşmuyor");
         }
     }
 }
