@@ -7,9 +7,9 @@ namespace PersonelManagement.Application.Extensions
     {
         public static List<ValidationError> ToMap(this List<ValidationFailure> errors)
         {
-            var errorList = new List<ValidationError>();
+            List<ValidationError> errorList = new List<ValidationError>();
             
-            foreach (var error in errors)
+            foreach (ValidationFailure error in errors)
             {
                 errorList.Add(new ValidationError
                 (

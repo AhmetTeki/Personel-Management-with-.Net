@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using FluentValidation.Results;
+using MediatR;
 using PersonelManagement.Application.Dtos;
 using PersonelManagement.Application.Extensions;
 using PersonelManagement.Application.Interfaces;
@@ -18,12 +19,12 @@ namespace PersonelManagement.Application.Handlers
 
         public async Task<Result<NoData>> Handle(RegisterRequest request, CancellationToken cancellationToken)
         {
-            var validator = new RegisterRequestValidator();
-            var validationResult = await validator.ValidateAsync(request);
+            RegisterRequestValidator validator = new RegisterRequestValidator();
+            ValidationResult validationResult = await validator.ValidateAsync(request);
 
             if (validationResult.IsValid)
             {
-                var rowCount = await _userRepository.CreateUserAsync(request.ToMap());
+                int rowCount = await _userRepository.CreateUserAsync(request.ToMap());
                 if (rowCount > 0)
                 {
                     return new Result<NoData>(new NoData(), true, null, null);
@@ -35,7 +36,7 @@ namespace PersonelManagement.Application.Handlers
             }
             else
             {
-                var errorList=validationResult.Errors.ToMap();
+                List<ValidationError> errorList =validationResult.Errors.ToMap();
                 return new Result<NoData>(new NoData(), false, null, errorList);
             }
 

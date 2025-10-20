@@ -28,7 +28,7 @@ namespace PersonelManagement.UI.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginRequest request)
         {
-            var result = await this._mediator.Send(request);
+            Result<LoginResponseDto?> result = await this._mediator.Send(request);
             if (result.IsSucces && result.Data != null)
             {
                 await SetAuthCookie(result.Data, request.rememberMe);
@@ -38,7 +38,7 @@ namespace PersonelManagement.UI.Controllers
             {
                 if (result.Errors != null && result.Errors.Count > 0)
                 {
-                    foreach (var error in result.Errors)
+                    foreach (ValidationError error in result.Errors)
                     {
                         ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
                     }
@@ -59,7 +59,7 @@ namespace PersonelManagement.UI.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterRequest request)
         {
-            var result = await this._mediator.Send(request);
+            Result<NoData> result = await this._mediator.Send(request);
             if (result.IsSucces)
             {
                 return RedirectToAction("Login");
@@ -68,7 +68,7 @@ namespace PersonelManagement.UI.Controllers
             {
                 if (result.Errors != null && result.Errors.Count > 0)
                 {
-                    foreach (var error in result.Errors)
+                    foreach (ValidationError error in result.Errors)
                     {
                         ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
                     }
@@ -88,17 +88,17 @@ namespace PersonelManagement.UI.Controllers
         private async Task SetAuthCookie(LoginResponseDto dto, bool rememberMe)
         {
             User.Claims.SingleOrDefault(x => x.Type == ClaimTypes.Name);
-            var claims = new List<Claim>
+            List<Claim> claims = new List<Claim>
            {
                new Claim("Name",dto.Name),
                new Claim("Surname", dto.Surname),
                new Claim(ClaimTypes.Role, dto.Role.ToString()),
            };
 
-            var claimsIdentity = new ClaimsIdentity(
+            ClaimsIdentity claimsIdentity = new ClaimsIdentity(
                 claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
-            var authProperties = new AuthenticationProperties
+            AuthenticationProperties authProperties = new AuthenticationProperties
             {
                 //AllowRefresh = <bool>,
                 // Refreshing the authentication session should be allowed.
