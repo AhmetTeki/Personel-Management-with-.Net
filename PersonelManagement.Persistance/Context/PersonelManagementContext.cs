@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PersonelManagement.Domain.Entities;
 using PersonelManagement.Persistance.Configurations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PersonelManagement.Persistance.Context
 {

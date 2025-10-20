@@ -1,0 +1,19 @@
+#wrapper {
+  display: flex;
+}
+
+#sidebar-wrapper {
+  width: 250px;
+  min-height: 100vh;
+  transition: all 0.3s ease;
+}
+
+#page-content-wrapper {
+  flex: 1;
+  padding: 20px;
+}
+
+/* Sidebar toggled state */
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: -250px;
+}

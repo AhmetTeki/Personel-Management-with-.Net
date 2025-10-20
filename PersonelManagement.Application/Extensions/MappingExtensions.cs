@@ -1,11 +1,6 @@
 ﻿using PersonelManagement.Application.Enums;
 using PersonelManagement.Application.Requests;
 using PersonelManagement.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PersonelManagement.Application.Extensions
 {

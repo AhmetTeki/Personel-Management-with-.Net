@@ -24,6 +24,14 @@
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Member\Data\" />
     <Folder Include="Areas\Member\Models\" />
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\Shared\_Layout.html">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

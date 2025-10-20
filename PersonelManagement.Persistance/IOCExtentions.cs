@@ -4,11 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using PersonelManagement.Application.Interfaces;
 using PersonelManagement.Persistance.Context;
 using PersonelManagement.Persistance.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PersonelManagement.Persistance
 {

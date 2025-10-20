@@ -5,11 +5,7 @@ using PersonelManagement.Application.Extensions;
 using PersonelManagement.Application.Interfaces;
 using PersonelManagement.Application.Requests;
 using PersonelManagement.Application.Validator;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace PersonelManagement.Application.Handlers
 {
