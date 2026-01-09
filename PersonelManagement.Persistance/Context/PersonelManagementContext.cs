@@ -4,12 +4,12 @@ using PersonelManagement.Persistance.Configurations;
 
 namespace PersonelManagement.Persistance.Context
 {
-   public class PersonelManagementContext : DbContext
+    public class PersonelManagementContext : DbContext
     {
-        public PersonelManagementContext(DbContextOptions<PersonelManagementContext> options):base(options)
+        public PersonelManagementContext(DbContextOptions<PersonelManagementContext> options) : base(options)
         {
-            
         }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new AppRoleConfiguration());
@@ -20,6 +20,7 @@ namespace PersonelManagement.Persistance.Context
             modelBuilder.ApplyConfiguration(new TaskReportConfiguration());
             base.OnModelCreating(modelBuilder);
         }
+
         public DbSet<AppRole> Roles { get; set; }
         public DbSet<AppTask> Tasks { get; set; }
         public DbSet<AppUser> Users { get; set; }

@@ -4,52 +4,54 @@
 }
 <!DOCTYPE html>
 <html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" />
-</head>
-<body class="bg-light d-flex justify-content-center align-items-center" style="height:100vh;">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    </head>
+    <body class="bg-light d-flex justify-content-center align-items-center" style="height:100vh;">
 
-    <div class="card shadow p-4" style="width: 100%; max-width: 500px;">
-        <h2 class="text-center mb-4 text-primary">Personel Yönetim Sistemi</h2>
-        <h3 class="text-center mb-4 text-primary">Kayıt Ol</h3>
+        <div class="card shadow p-4" style="width: 100%; max-width: 500px;">
+            <h2 class="text-center mb-4 text-primary">Personel Yönetim Sistemi</h2>
+            <h3 class="text-center mb-4 text-primary">Kayıt Ol</h3>
 
-        <form asp-action="Register" method="post">
-            <div class="mb-3">
-                <label for="name" class="form-label">Ad</label>
-                <input type="text" class="form-control" asp-for="Name" placeholder="Adınızı girin" required />
-            </div>
-            <div class="mb-3">
-                <label for="surname" class="form-label">Soyad</label>
-                <input type="text" class="form-control" asp-for="SurName" placeholder="Soyadınızı girin" required />
-            </div>
-            <div class="mb-3">
-                <label for="username" class="form-label">Kullanıcı Adı</label>
-                <input type="text" class="form-control" asp-for="UserName" placeholder="Kullanıcı adınızı girin" required />
-            </div>
+            <form asp-action="Register" method="post">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Ad</label>
+                    <input type="text" class="form-control" asp-for="Name" placeholder="Adınızı girin" required id="name"/>
+                </div>
+                <div class="mb-3">
+                    <label for="surname" class="form-label">Soyad</label>
+                    <input type="text" class="form-control" asp-for="SurName" placeholder="Soyadınızı girin" required id="surname"/>
+                </div>
+                <div class="mb-3">
+                    <label for="username" class="form-label">Kullanıcı Adı</label>
+                    <input type="text" class="form-control" asp-for="UserName" placeholder="Kullanıcı adınızı girin" required
+                           id="username"/>
+                </div>
 
-            <div class="mb-3">
-                <label for="password" class="form-label">Parola</label>
-                <input type="password" class="form-control" asp-for="Password" placeholder="Parolanızı girin" required />
-            </div>
-            <div class="mb-3">
-                <label for="ConfirmPassword" class="form-label">Parola Tekrar</label>
-                <input type="password" class="form-control" asp-for="ConfirmPassword" placeholder="Parolanızı tekrardan girin" required />
-            </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Parola</label>
+                    <input type="password" class="form-control" asp-for="Password" placeholder="Parolanızı girin" required id="password"/>
+                </div>
+                <div class="mb-3">
+                    <label for="ConfirmPassword" class="form-label">Parola Tekrar</label>
+                    <input type="password" class="form-control" asp-for="ConfirmPassword" placeholder="Parolanızı tekrardan girin" required
+                           id="ConfirmPassword"/>
+                </div>
 
-            <button type="submit" class="btn btn-primary w-100">Kayıt Ol</button>
-            <div class="text-center">
-                <small class="text-muted">
-                    Zaten Hesabın Varmı? <a asp-action="Login" asp-controller="Account" class="text-decoration-none">Giriş Yap</a>
-                </small>
-            </div>
-            <div asp-validation-summary=All class="text-danger lead">
-            </div>
-        </form>
-    </div>
+                <button type="submit" class="btn btn-primary w-100">Kayıt Ol</button>
+                <div class="text-center">
+                    <small class="text-muted">
+                        Zaten Hesabın Varmı? <a asp-action="Login" asp-controller="Account" class="text-decoration-none">Giriş Yap</a>
+                    </small>
+                </div>
+                <div asp-validation-summary="All" class="text-danger lead">
+                </div>
+            </form>
+        </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
 </html>

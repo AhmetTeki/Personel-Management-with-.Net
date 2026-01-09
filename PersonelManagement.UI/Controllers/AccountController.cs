@@ -1,14 +1,10 @@
-﻿
-using Humanizer;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
-
 using PersonelManagement.Application.Requests;
 using System.Security.Claims;
 using PersonelManagement.Application.Dtos;
-using System.Threading.Tasks;
 
 namespace PersonelManagement.UI.Controllers
 {
@@ -25,6 +21,7 @@ namespace PersonelManagement.UI.Controllers
         {
             return View(new LoginRequest("", ""));
         }
+
         [HttpPost]
         public async Task<IActionResult> Login(LoginRequest request)
         {
@@ -47,15 +44,17 @@ namespace PersonelManagement.UI.Controllers
                 {
                     ModelState.AddModelError("", result.ErrorMassage ?? "Bilinmeyen bir hata oluştu, sistem üreticinize başvurun.");
                 }
+
                 return View(request);
             }
-
         }
+
         [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Register(RegisterRequest request)
         {
@@ -77,23 +76,26 @@ namespace PersonelManagement.UI.Controllers
                 {
                     ModelState.AddModelError("", result.ErrorMassage ?? "Bilinmeyen bir hata oluştu, sistem üreticinize başvurun.");
                 }
+
                 return View(request);
             }
         }
+
         public async Task<IActionResult> LogOut()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Login");
         }
+
         private async Task SetAuthCookie(LoginResponseDto dto, bool rememberMe)
         {
             User.Claims.SingleOrDefault(x => x.Type == ClaimTypes.Name);
             List<Claim> claims = new List<Claim>
-           {
-               new Claim("Name",dto.Name),
-               new Claim("Surname", dto.Surname),
-               new Claim(ClaimTypes.Role, dto.Role.ToString()),
-           };
+            {
+                new Claim("Name", dto.Name),
+                new Claim("Surname", dto.Surname),
+                new Claim(ClaimTypes.Role, dto.Role.ToString()),
+            };
 
             ClaimsIdentity claimsIdentity = new ClaimsIdentity(
                 claims, CookieAuthenticationDefaults.AuthenticationScheme);

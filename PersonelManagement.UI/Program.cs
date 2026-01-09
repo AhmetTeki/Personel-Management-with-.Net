@@ -21,7 +21,7 @@ builder.Services.AddPersistanceServices(builder.Configuration);
 
 builder.Services.AddApplicationServices();
 
-var app = builder.Build();
+WebApplication app = builder.Build();
 
 app.UseStaticFiles();
 

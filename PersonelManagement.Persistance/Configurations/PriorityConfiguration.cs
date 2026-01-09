@@ -8,9 +8,8 @@ namespace PersonelManagement.Persistance.Configurations
     {
         public void Configure(EntityTypeBuilder<Priority> builder)
         {
-            builder.Property(x => x.Definition).IsRequired(true);
+            builder.Property(x => x.Definition).IsRequired();
             builder.Property(x => x.Definition).HasMaxLength(250);
-
 
             builder.HasMany(x => x.Tasks).WithOne(x => x.Priority).HasForeignKey(x => x.PriorityId);
         }

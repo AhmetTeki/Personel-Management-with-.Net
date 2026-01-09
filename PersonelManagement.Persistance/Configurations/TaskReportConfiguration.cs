@@ -8,12 +8,11 @@ namespace PersonelManagement.Persistance.Configurations
     {
         public void Configure(EntityTypeBuilder<TaskReport> builder)
         {
-            builder.Property(x => x.Detail).IsRequired(true);
-
-            builder.Property(x => x.Definition).IsRequired(true);
+            builder.Property(x => x.Detail).IsRequired();
+            builder.Property(x => x.Definition).IsRequired();
             builder.Property(x => x.Definition).HasMaxLength(250);
 
-            builder.Property(x => x.AppTaskId).IsRequired(true);
+            builder.Property(x => x.AppTaskId).IsRequired();
         }
     }
 }

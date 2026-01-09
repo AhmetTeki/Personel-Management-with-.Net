@@ -8,12 +8,12 @@ namespace PersonelManagement.Persistance.Configurations
     {
         public void Configure(EntityTypeBuilder<Notification> builder)
         {
-            builder.Property(x => x.Description).IsRequired(true);
+            builder.Property(x => x.Description).IsRequired();
             builder.Property(x => x.Description).HasMaxLength(500);
 
-            builder.Property(x => x.State).IsRequired(true);
+            builder.Property(x => x.State).IsRequired();
 
-            builder.Property(x => x.AppUserId).IsRequired(true);
+            builder.Property(x => x.AppUserId).IsRequired();
         }
     }
 }

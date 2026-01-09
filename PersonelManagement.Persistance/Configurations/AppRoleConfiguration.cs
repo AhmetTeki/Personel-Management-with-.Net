@@ -8,7 +8,7 @@ namespace PersonelManagement.Persistance.Configurations
     {
         public void Configure(EntityTypeBuilder<AppRole> builder)
         {
-            builder.Property(x => x.Definition).IsRequired(true);
+            builder.Property(x => x.Definition).IsRequired();
             builder.Property(x => x.Definition).HasMaxLength(150);
             builder.HasMany(x => x.Users).WithOne(x => x.Role).HasForeignKey(x => x.AppRoleId);
         }

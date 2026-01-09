@@ -11,40 +11,32 @@ using PersonelManagement.Domain.Entities;
 
 namespace PersonelManagement.Application.Handlers
 {
-    public class LoginRequestHandler : IRequestHandler<LoginRequest, Result<LoginResponseDto?>>
+    public class LoginRequestHandler(IUserRepository userRepository) : IRequestHandler<LoginRequest, Result<LoginResponseDto?>>
     {
-        private readonly IUserRepository _userRepository;
-
-        public LoginRequestHandler(IUserRepository userRepository)
-        {
-            _userRepository = userRepository;
-        }
-
         public async Task<Result<LoginResponseDto?>> Handle(LoginRequest request, CancellationToken cancellationToken)
         {
-            LoginRequestValidator validator =  new LoginRequestValidator();
-            ValidationResult validationResult = await validator.ValidateAsync(request);
+            LoginRequestValidator validator = new LoginRequestValidator();
+            ValidationResult validationResult = await validator.ValidateAsync(request, cancellationToken);
             if (validationResult.IsValid)
             {
-                AppUser? user =await  this._userRepository.GetByFilterAsync(x=>x.Password==request.Password && x.UserName==request.UserName);
-              
+                AppUser? user =
+                    await userRepository.GetByFilterAsync(x => x.Password == request.Password && x.UserName == request.UserName);
+
                 if (user != null)
                 {
                     RoleType type = (RoleType)user.AppRoleId;
-                    return new Result<LoginResponseDto?>(new LoginResponseDto(user.Name,user.SurName,type), true, null, null);
+                    return new Result<LoginResponseDto?>(new LoginResponseDto(user.Name, user.SurName, type), true, null, null);
                 }
                 else
                 {
                     return new Result<LoginResponseDto?>(null, false, "Kullanıcı Adı veya şifre hatalı", null);
                 }
-                
             }
             else
             {
                 List<ValidationError> errorList = validationResult.Errors.ToMap();
                 return new Result<LoginResponseDto?>(null, false, null, errorList);
             }
-           
         }
     }
 }
