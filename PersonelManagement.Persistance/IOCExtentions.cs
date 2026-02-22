@@ -7,15 +7,13 @@ using PersonelManagement.Persistance.Repositories;
 
 namespace PersonelManagement.Persistance
 {
-   public static class IOCExtentions
+    public static class IOCExtentions
     {
         public static void AddPersistanceServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<PersonelManagementContext>(opt =>
-            {
-                opt.UseSqlServer(configuration.GetConnectionString("Local"));
-            });
+            services.AddDbContext<PersonelManagementContext>(opt => { opt.UseSqlServer(configuration.GetConnectionString("Local")); });
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IPriorityRepository, PriorityRepository>();
         }
     }
 }
