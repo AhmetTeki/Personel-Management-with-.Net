@@ -1,0 +1,22 @@
+﻿@model List<PersonelManagement.Domain.Entities.Priority>
+@{
+    Layout = "_Layout";
+    int count = 0;
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Tanım</th>
+            <th scope="col">İşlem</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td><a asp-action="Update" asp-controller="Priority" asp-area="Admin">Güncelle</a></td>
+        </tr>
+    </tbody>
+</table>

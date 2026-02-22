@@ -20,7 +20,7 @@ namespace PersonelManagement.Application.Handlers
         public async Task<Result<NoData>> Handle(RegisterRequest request, CancellationToken cancellationToken)
         {
             RegisterRequestValidator validator = new RegisterRequestValidator();
-            ValidationResult validationResult = await validator.ValidateAsync(request);
+            ValidationResult validationResult = await validator.ValidateAsync(request, cancellationToken);
 
             if (validationResult.IsValid)
             {
