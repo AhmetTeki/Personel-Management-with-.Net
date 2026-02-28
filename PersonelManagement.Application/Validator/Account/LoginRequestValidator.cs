@@ -3,7 +3,7 @@ using PersonelManagement.Application.Requests;
 
 namespace PersonelManagement.Application.Validator
 {
-   public class LoginRequestValidator : AbstractValidator<LoginRequest>
+    public class LoginRequestValidator : AbstractValidator<LoginRequest>
     {
         public LoginRequestValidator()
         {

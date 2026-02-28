@@ -11,4 +11,10 @@ public class PriorityRepository(PersonelManagementContext _context) : IPriorityR
     {
         return await _context.Priorities.AsNoTracking().ToListAsync();
     }
+
+    public async Task<int> CreateAsync(Priority priority)
+    {
+        _context.Add(priority);
+        return await _context.SaveChangesAsync();
+    }
 }
