@@ -1,0 +1,23 @@
+﻿@model PersonelManagement.Application.Requests.PriorityUpdateRequest
+@{
+    Layout = "_Layout";
+}
+
+<div class="container">
+    <form asp-action="Update" asp-controller="Priority" asp-area="Admin" method="post">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h3>Aciliyet Güncelle</h3>
+            </div>
+            <input type="hidden" asp-for="Id"/>
+            <div class="col-4">
+                <label class="form-label">Aciliyet Tanımı</label>
+                <input type="text" asp-for="Definition" class="form-control" placeholder="Aciliyet Tanımı" required>
+            </div>
+        </div>
+        <div class="mt-4">
+            <button type="submit" class="btn btn-primary">Kaydet</button>
+        </div>
+        <div asp-validation-summary="All" class="text-danger lead"></div>
+    </form>
+</div>
