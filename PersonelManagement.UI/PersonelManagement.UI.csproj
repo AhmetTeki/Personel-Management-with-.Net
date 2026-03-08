@@ -35,4 +35,10 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <AdditionalFiles Include="Areas\Admin\Views\AppTask\Create.cshtml" />
+    <AdditionalFiles Include="Areas\Admin\Views\AppTask\List.cshtml" />
+    <AdditionalFiles Include="Areas\Admin\Views\AppTask\Update.cshtml" />
+  </ItemGroup>
+
 </Project>

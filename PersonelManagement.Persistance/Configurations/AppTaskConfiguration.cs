@@ -9,7 +9,7 @@ namespace PersonelManagement.Persistance.Configurations
         public void Configure(EntityTypeBuilder<AppTask> builder)
         {
             builder.Property(x => x.PriorityId).IsRequired();
-            builder.Property(x => x.AppUserId).IsRequired();
+            builder.Property(x => x.AppUserId).IsRequired(false);
 
             builder.Property(x => x.Description).IsRequired();
 

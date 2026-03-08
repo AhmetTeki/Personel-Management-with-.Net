@@ -14,6 +14,7 @@ namespace PersonelManagement.Persistance
             services.AddDbContext<PersonelManagementContext>(opt => { opt.UseSqlServer(configuration.GetConnectionString("Local")); });
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IPriorityRepository, PriorityRepository>();
+            services.AddScoped<IAppTaskRepository, AppTaskRepository>();
         }
     }
 }
