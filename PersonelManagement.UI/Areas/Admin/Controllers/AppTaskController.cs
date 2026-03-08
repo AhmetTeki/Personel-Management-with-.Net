@@ -10,9 +10,9 @@ namespace PersonelManagement.UI.Areas.Admin.Controllers;
 [Authorize(Roles = "Admin")]
 public class AppTaskController(IMediator _mediator) : Controller
 {
-    public async Task<IActionResult> List()
+    public async Task<IActionResult> List(int activePage = 1)
     {
-        Result<List<AppTaskListDto>> result = await _mediator.Send(new AppTaskListRequest());
+        var result = await _mediator.Send(new AppTaskListRequest(activePage));
         return View(result.Data);
     }
 

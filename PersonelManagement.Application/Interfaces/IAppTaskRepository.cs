@@ -1,11 +1,12 @@
 ﻿using System.Linq.Expressions;
+using PersonelManagement.Application.Dtos;
 using PersonelManagement.Domain.Entities;
 
 namespace PersonelManagement.Application.Interfaces;
 
 public interface IAppTaskRepository
 {
-    Task<List<AppTask>> GetAllAsync();
+    Task<PagedData<AppTask>> GetAllAsync(int ActivePage, int PageSize = 10);
     Task<int> CreateAsync(AppTask appTask);
 
     Task<AppTask?> GetFilterNoTrackingAsync(Expression<Func<AppTask, bool>> filter);
