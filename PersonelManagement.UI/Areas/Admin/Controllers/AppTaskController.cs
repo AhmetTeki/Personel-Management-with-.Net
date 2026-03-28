@@ -13,7 +13,7 @@ public class AppTaskController(IMediator _mediator) : Controller
     public async Task<IActionResult> List(int activePage = 1)
     {
         var result = await _mediator.Send(new AppTaskListRequest(activePage));
-        return View(result.Data);
+        return View(result);
     }
 
     public IActionResult Create()
