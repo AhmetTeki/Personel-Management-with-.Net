@@ -9,7 +9,7 @@ public class AppTaskListHandler(IAppTaskRepository _appTaskRepository) : IReques
 {
     public async Task<PagedResult<AppTaskListDto>> Handle(AppTaskListRequest request, CancellationToken cancellationToken)
     {
-        var list = await _appTaskRepository.GetAllAsync(request.ActivePage);
+        var list = await _appTaskRepository.GetAllAsync(request.ActivePage, s:request.S);
 
         var result = new List<AppTaskListDto>();
 

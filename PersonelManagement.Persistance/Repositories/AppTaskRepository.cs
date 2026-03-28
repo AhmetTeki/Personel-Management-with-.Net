@@ -10,13 +10,19 @@ namespace PersonelManagement.Persistance.Repositories;
 
 public class AppTaskRepository(PersonelManagementContext _context) : IAppTaskRepository
 {
-    public async Task<PagedData<AppTask>> GetAllAsync(int ActivePage, int PageSize = 10)
+    public async Task<PagedData<AppTask>> GetAllAsync(int ActivePage, string? s = null, int PageSize = 10)
     {
-        var list = await _context.Tasks.AsNoTracking().Include(x => x.AppUser).Include(x => x.Priority)
+        var query = _context.Tasks.AsQueryable();
+        if (!string.IsNullOrEmpty(s))
+        {
+            query = query.Where(x => x.Title.ToLower().Contains(s) || x.Description.ToLower().Contains(s));
+        }
+
+        var list = await query.AsNoTracking().Include(x => x.AppUser).Include(x => x.Priority)
             .ToPagedAsync(ActivePage, PageSize);
         return list;
     }
-    
+
 
     public async Task<int> CreateAsync(AppTask appTask)
     {

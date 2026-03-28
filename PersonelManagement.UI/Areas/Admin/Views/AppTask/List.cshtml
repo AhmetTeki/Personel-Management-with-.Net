@@ -6,7 +6,7 @@
 }
 <div class="d-flex justify-content-between  align-items-center pt-3 pb-2 mb-3 border-bottom">
     <a asp-action="Create" asp-controller="AppTask" asp-area="Admin" class="btn btn-primary mb-4"> Yeni Aciliyet Durumu Ekle</a>
-    <div class="input-group mb-2 shadow-sm" style="max-width: 320px;">
+    <form class="input-group mb-2 shadow-sm" style="max-width: 320px;" asp-action="List" asp-controller="AppTask" asp-area="Admin" >
         <input type="text" name="s"
                class="form-control border-end-0"
                placeholder="İş Emri Ara">
@@ -14,7 +14,7 @@
         <button class="btn btn-primary px-3" type="submit">
             Ara
         </button>
-    </div>
+    </form>
 </div>
 
 <table class="table">
@@ -61,7 +61,7 @@
     <ul class="pagination">
         @for (int i = 1; i <= Model.TotalPages; i++)
         {
-            <li class="page-item"><a class="page-link" asp-route-activePage="@i" asp-action="List" asp-controller="AppTask"
+            <li class="page-item"><a class="page-link"  asp-route-activePage="@i" asp-action="List" asp-controller="AppTask"
                                      asp-area="Admin">@i</a></li>
         }
 
