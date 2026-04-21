@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using PersonelManagement.Application.Dtos;
 using PersonelManagement.Application.Requests;
 
@@ -16,13 +17,15 @@ public class AppTaskController(IMediator _mediator) : Controller
         return View(result);
     }
 
-    public IActionResult Create()
+    public async Task<IActionResult> Create()
     {
+        var result = await _mediator.Send(new PriorityListRequest());
+        ViewBag.Priorities =new List<SelectListItem>(result.Data.Select(x=>new SelectListItem(x.Definition,x.Id.ToString()))) ;
         return View();
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create(PriorityCreateRequest request)
+    public async Task<IActionResult> Create(AppTaskCreateRequest request)
     {
         var result = await _mediator.Send(request);
 

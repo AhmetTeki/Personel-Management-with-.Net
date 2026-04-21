@@ -1,17 +1,26 @@
-﻿@model PersonelManagement.Application.Requests.PriorityCreateRequest
+﻿@model PersonelManagement.Application.Requests.AppTaskCreateRequest
 @{
     Layout = "_Layout";
 }
 
 <div class="container">
-    <form asp-action="Create" asp-controller="Priority" asp-area="Admin" method="post">
+    <form asp-action="Create" asp-controller="AppTask" asp-area="Admin" method="post">
         <div class="row">
             <div class="col-12 text-center">
-                <h3>Yeni Aciliyet Ekle</h3>
+                <h3>Yeni İş Emri Ekle</h3>
             </div>
             <div class="col-4">
-                <label class="form-label">Aciliyet Tanımı</label>
-                <input type="text" asp-for="Definition" class="form-control" placeholder="Aciliyet Tanımı" required>
+                <label class="form-label">İş Emri</label>
+                <input type="text" asp-for="Title" class="form-control" placeholder="Aciliyet Tanımı" required>
+            </div>
+            <div class="col-4">
+                <label class="form-label">İş Emri</label>
+                <input type="text" asp-for="Title" class="form-control" placeholder="Aciliyet Tanımı" required>
+            </div>
+            <div class="col-12">
+                <select asp-for="PriorityId" asp-items="ViewBag.Priorities">
+                    
+                </select>
             </div>
         </div>
         <div class="mt-4">
