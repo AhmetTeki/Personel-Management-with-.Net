@@ -13,4 +13,4 @@ public record AppTaskListRequest : PagedRequest, IRequest<PagedResult<AppTaskLis
     public string? S { get; set; }
 }
 
-public record AppTaskCreateRequest(string? Title, string? Description, int? PriorityId);
+public record AppTaskCreateRequest(string? Title, string? Description, int? PriorityId): IRequest<Result<NoData>>;

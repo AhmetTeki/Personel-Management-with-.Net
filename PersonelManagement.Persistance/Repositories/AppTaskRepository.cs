@@ -23,11 +23,12 @@ public class AppTaskRepository(PersonelManagementContext _context) : IAppTaskRep
         return list;
     }
 
-
     public async Task<int> CreateAsync(AppTask appTask)
     {
-        throw new NotImplementedException();
+        await _context.Tasks.AddAsync(appTask);
+        return await _context.SaveChangesAsync();
     }
+
 
     public async Task<AppTask?> GetFilterNoTrackingAsync(Expression<Func<AppTask, bool>> filter)
     {

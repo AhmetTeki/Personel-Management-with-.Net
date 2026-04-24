@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using PersonelManagement.Application.Dtos;
 using PersonelManagement.Application.Requests;
 
 namespace PersonelManagement.UI.Areas.Admin.Controllers;
@@ -27,6 +26,9 @@ public class AppTaskController(IMediator _mediator) : Controller
     [HttpPost]
     public async Task<IActionResult> Create(AppTaskCreateRequest request)
     {
+        var priority = await _mediator.Send(new PriorityListRequest());
+        ViewBag.Priorities =new List<SelectListItem>(priority.Data.Select(x=>new SelectListItem(x.Definition,x.Id.ToString()))) ;
+        
         var result = await _mediator.Send(request);
 
         if (result.IsSucces)
