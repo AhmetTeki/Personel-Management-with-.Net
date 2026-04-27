@@ -32,17 +32,18 @@ public class AppTaskRepository(PersonelManagementContext _context) : IAppTaskRep
 
     public async Task<AppTask?> GetFilterNoTrackingAsync(Expression<Func<AppTask, bool>> filter)
     {
-        throw new NotImplementedException();
+        return await _context.Tasks.AsNoTracking().SingleOrDefaultAsync(filter);
     }
 
     public async Task<AppTask?> GetFilterAsync(Expression<Func<AppTask, bool>> filter)
     {
-        throw new NotImplementedException();
+        return await _context.Tasks.SingleOrDefaultAsync(filter);
     }
 
     public async Task DeleteAsync(AppTask appTask)
     {
-        throw new NotImplementedException();
+        _context.Tasks.Remove(appTask);
+        await _context.SaveChangesAsync();
     }
 
     public async Task<int> SaveChangesAsync()

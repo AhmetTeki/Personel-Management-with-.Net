@@ -55,7 +55,7 @@ public class AppTaskController(IMediator _mediator) : Controller
 
     public async Task<IActionResult> Delete(int id)
     {
-        await _mediator.Send(new PriorityDeleteRequest(id));
+        await _mediator.Send(new AppTaskDeleteRequest(id));
         return RedirectToAction("List");
     }
 
