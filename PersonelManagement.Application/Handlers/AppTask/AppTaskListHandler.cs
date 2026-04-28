@@ -15,7 +15,7 @@ public class AppTaskListHandler(IAppTaskRepository _appTaskRepository) : IReques
 
         foreach (var item in list.Data)
         {
-            var dto = new AppTaskListDto(item.Id, item.Title, item.Description, item.AppUser?.Name, item.Priority?.Definition, item.State);
+            var dto = new AppTaskListDto(item.Id, item.Title, item.Description, item.AppUser?.Name, item.Priority?.Definition, item.State, item.PriorityId);
             result.Add(dto);
         }
 

@@ -14,4 +14,6 @@ public record AppTaskListRequest : PagedRequest, IRequest<PagedResult<AppTaskLis
 }
 
 public record AppTaskCreateRequest(string? Title, string? Description, int? PriorityId): IRequest<Result<NoData>>;
+public record AppTaskUpdateRequest(string? Title, string? Description, int? PriorityId, int? AppUserId): IRequest<Result<NoData>>;
 public record AppTaskDeleteRequest(int Id):IRequest<Result<NoData>>;
+public record AppTaskGetByIdRequest(int Id) : IRequest<Result<AppTaskListDto>>;

@@ -19,7 +19,7 @@ public class AppTaskController(IMediator _mediator) : Controller
     public async Task<IActionResult> Create()
     {
         var result = await _mediator.Send(new PriorityListRequest());
-        ViewBag.Priorities =new List<SelectListItem>(result.Data.Select(x=>new SelectListItem(x.Definition,x.Id.ToString()))) ;
+        ViewBag.Priorities = new List<SelectListItem>(result.Data.Select(x => new SelectListItem(x.Definition, x.Id.ToString())));
         return View();
     }
 
@@ -27,8 +27,8 @@ public class AppTaskController(IMediator _mediator) : Controller
     public async Task<IActionResult> Create(AppTaskCreateRequest request)
     {
         var priority = await _mediator.Send(new PriorityListRequest());
-        ViewBag.Priorities =new List<SelectListItem>(priority.Data.Select(x=>new SelectListItem(x.Definition,x.Id.ToString()))) ;
-        
+        ViewBag.Priorities = new List<SelectListItem>(priority.Data.Select(x => new SelectListItem(x.Definition, x.Id.ToString())));
+
         var result = await _mediator.Send(request);
 
         if (result.IsSucces)
@@ -61,17 +61,14 @@ public class AppTaskController(IMediator _mediator) : Controller
 
     public async Task<IActionResult> Update(int id)
     {
-        var result = await _mediator.Send(new PriorityGetByIdRequest(id));
-        if (result.IsSucces)
-        {
-            var requestModel = new PriorityUpdateRequest(result.Data.Id, result.Data.Definition);
-            return View(requestModel);
-        }
-        else
-        {
-            ModelState.AddModelError("", result.ErrorMassage ?? "Bilinmeyen Bir Hata Oluştu");
-            return View();
-        }
+        var uptadedto = await _mediator.Send(new AppTaskGetByIdRequest(id));
+
+        var result = await _mediator.Send(new PriorityListRequest());
+        ViewBag.Priorities =
+            new List<SelectListItem>(result.Data.Select(x =>
+                new SelectListItem(x.Definition, x.Id.ToString(), uptadedto.Data.PriorityId == x.Id)));
+
+        return View();
     }
 
     [HttpPost]

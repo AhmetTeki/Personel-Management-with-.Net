@@ -1,4 +1,5 @@
-﻿using PersonelManagement.Application.Enums;
+﻿using PersonelManagement.Application.Dtos;
+using PersonelManagement.Application.Enums;
 using PersonelManagement.Application.Requests;
 using PersonelManagement.Domain.Entities;
 
@@ -25,6 +26,7 @@ namespace PersonelManagement.Application.Extensions
                 Definition = request.Definition,
             };
         }
+
         public static AppTask ToMap(this AppTaskCreateRequest request)
         {
             return new AppTask
@@ -34,6 +36,12 @@ namespace PersonelManagement.Application.Extensions
                 PriorityId = (int)request.PriorityId,
                 State = false
             };
+        }
+
+        public static AppTaskListDto ToMap(this AppTask request)
+        {
+            return new AppTaskListDto(request.Id, request.Title, request.Description, request.AppUser.Name, request.Priority.Definition,
+                request.State, request.PriorityId);
         }
     }
 }
